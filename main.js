@@ -14,25 +14,11 @@ const createWindow = () => {
   win.loadFile('pages/index.html')
 }
 
-async function conectarBancoDados(){
-  var conexao = await mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    passaword: 'root',
-    database: 'electron_db'
-  })
+ipcMain.handle('cadastrar-meu-usuario', function(evento, nome, email){
+  console.log("Nome: ", nome)
+  console.log("E-mail: ", email)
 
-  return conexao
-}
-
-ipcMain.handle('criar-usuario', async function(event, campoNome, campEmail){
-  var conexao = await conectarBancoDados()
-
-  var criarUsuarioSQL = 'INSERT INTO usuarios(nome, email) VALUES(? , ?)'
-
-  var resultado = await conexao.execute(criarUsuarioSQL, [campoNome, campEmail] )
-
-  console.log('resultado', resultado)
+  console.log("SE é LOKO! CADASTROU O USUÀRIO COM SUCESSO!")
 })
 
 app.whenReady().then(() => {

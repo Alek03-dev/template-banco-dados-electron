@@ -8,5 +8,6 @@ formulario.addEventListener("submit", function(evento) {
   var campoNome = document.getElementById("nome").value
   var campoEmail = document.getElementById("email").value
 
-  console.log(campoNome, campoEmail)
+  window.api.cadastrarUsuario(campoNome, campoEmail)
+
 })
